@@ -71,3 +71,4 @@ if __name__ == "__main__":
 
     video_detector(cam, cascade)
     # img_detector(cam, cascade)
+
