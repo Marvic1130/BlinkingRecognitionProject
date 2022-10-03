@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Marvic1130/BlinkingRecognitionProject/issues"
   },
-  "homepage": "https://github.com/Marvic1130/BlinkingRecognitionProject#readme"
+  "homepage": "https://github.com/Marvic1130/BlinkingRecognitionProject#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
