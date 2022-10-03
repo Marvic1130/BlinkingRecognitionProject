@@ -1,0 +1,19 @@
+{
+  "name": "blink",
+  "version": "1.0.0",
+  "description": "2022 캡스톤 디자인 3팀 프로젝트",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marvic1130/BlinkingRecognitionProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marvic1130/BlinkingRecognitionProject/issues"
+  },
+  "homepage": "https://github.com/Marvic1130/BlinkingRecognitionProject#readme"
+}
