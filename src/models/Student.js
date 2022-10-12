@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-//이름, 아이디, 패스워드, 소속대학, 학과, 이메일
+//이름, 아이디, 패스워드, 소속대학, 학과, 학번
 module.exports = class User extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
@@ -16,8 +16,8 @@ module.exports = class User extends Sequelize.Model {
         password: {
           //암호화 진행
         },
-        email: {
-          type: Sequelize.STRING(50),
+        sNumber: {
+          type: Sequelize.INTEGER(50),
           allowNull: false,
         },
         university: {

@@ -1,29 +1,31 @@
-//수업명 , 교수, 학과, 수업시간, 장소, 인원수,학점
 const Sequelize = require("sequelize");
+//이름, 아이디, 패스워드, 소속대학, 학과, 사번
 module.exports = class User extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        className: {
+        name: {
           type: Sequelize.STRING(20),
           allowNull: false,
         },
-        professor: {
+        id: {
           type: Sequelize.STRING(20),
           allowNull: false,
           unique: true,
         },
-        department: {
-          type: Sequelize.STRING(20),
-          allowNull: false,
+        password: {
+          //암호화 진행
         },
-        classTime: {},
-        place: {
-          type: Sequelize.STRING(20),
-          allowNull: false,
-        },
-        people: {
+        pNumber: {
           type: Sequelize.INTEGER(50),
+          allowNull: false,
+        },
+        university: {
+          type: Sequelize.STRING(50),
+          allowNull: false,
+        },
+        department: {
+          type: Sequelize.STRING(50),
           allowNull: false,
         },
       },
