@@ -20,15 +20,15 @@ def rename_file():
             count += 1
 
 
-count = 0
+countIndex = 0
 file_list = os.listdir("croppedData")
 for i in range(file_list.__len__()):
     if file_list[i].endswith(".jpg"):
         src = "croppedData/" + file_list[i]
-        dst = "croppedData/temp" + count.__str__() + ".jpg"
+        dst = "croppedData/temp" + countIndex.__str__() + ".jpg"
         os.rename(src, dst)
         print(src + " rename to " + dst)
-        count += 1
+        countIndex += 1
 
 facenet = cv2.dnn.readNet('models/deploy.prototxt', 'models/res10_300x300_ssd_iter_140000.caffemodel')
 model = load_model('8LBMI2.h5')
