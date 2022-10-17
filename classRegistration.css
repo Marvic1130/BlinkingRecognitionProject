@@ -1,0 +1,78 @@
+/* 폰트 */
+@font-face {
+  font-family: "gong";
+  src: url("/font/Gong Gothic Medium.ttf");
+}
+@font-face {
+  font-family: "nanum";
+  src: url("/font/NanumSquareRoundB.ttf");
+}
+@font-face {
+  font-family: "gongli";
+  src: url("/font/Gong/Gothic/Light.ttf");
+}
+@font-face {
+  font-family: "main";
+  src: url("/font/HS두꺼비체.ttf");
+}
+
+/* 바디 */
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: hsl(194deg 26% 50%);
+}
+.container {
+  text-align: center;
+}
+.title {
+  font-size: 50px;
+  font-family: "gongli";
+}
+.classBox {
+  display: inline-block;
+  width: 1000px;
+  background-color: #d9d9d9;
+  height: 600px;
+  border-radius: 3px;
+  font-family: "nanum";
+  font-size: 20px;
+}
+.formBox {
+  position: relative;
+  top: 82px;
+}
+#classTitle,
+#classTime,
+#department,
+#place,
+#grades,
+#numOfPeople {
+  width: 310px;
+  height: 30px;
+  border: none;
+  border-radius: 2px;
+  margin: 10px;
+}
+#titleLabel {
+  margin-right: 22px;
+}
+#departmentLabel {
+  margin-right: 40px;
+}
+#placeLabel {
+  margin-right: 40px;
+}
+#gradesLabel {
+  margin-right: 40px;
+}
+#peopleLabel {
+  margin-right: 22px;
+}
+#registrationBtn {
+  margin-top: 28px;
+  padding: 16px 120px;
+  border: none;
+  border-radius: 3px;
+  background-color: #448593;
+  font-size: 20px;
+}
