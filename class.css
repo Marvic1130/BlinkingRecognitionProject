@@ -50,6 +50,7 @@ label[for="trigger"] span {
 }
 
 /* label[for=trigger] > span의 n번째 요소 */
+/* 세줄 위치 지정 */
 label[for="trigger"] span:nth-child(1) {
   top: 0;
 }
@@ -63,6 +64,7 @@ label[for="trigger"] span:nth-child(3) {
 }
 
 /* check시 변하는 label[for=trigger] > span의 n번째 요소  */
+/* 세줄 클릭시 X로 변환 */
 input[id="trigger"]:checked + label span:nth-child(1) {
   top: 50%;
   transform: rotate(45deg);
@@ -87,6 +89,7 @@ input[id="trigger"]:checked + label span:nth-child(3) {
   left: 0;
   left: -250px;
   transition: 0.3s;
+  z-index: 1;
 }
 #menu-title {
   font-size: 29px;
@@ -103,6 +106,64 @@ input[id="trigger"]:checked + label[for="trigger"] {
   transition: 0.3s;
 }
 
+/* 수업 등록 */
+.registration-container {
+  text-align: center;
+  display: none;
+}
+.title {
+  font-size: 50px;
+  font-family: "gongli";
+}
+.classBox {
+  display: inline-block;
+  width: 1000px;
+  background-color: #d9d9d9;
+  height: 600px;
+  border-radius: 3px;
+  font-family: "nanum";
+  font-size: 20px;
+}
+.formBox {
+  position: relative;
+  top: 82px;
+}
+#classTitle,
+#classTime,
+#department,
+#place,
+#grades,
+#numOfPeople {
+  width: 310px;
+  height: 30px;
+  border: none;
+  border-radius: 2px;
+  margin: 10px;
+}
+#titleLabel {
+  margin-right: 22px;
+}
+#departmentLabel {
+  margin-right: 40px;
+}
+#placeLabel {
+  margin-right: 40px;
+}
+#gradesLabel {
+  margin-right: 40px;
+}
+#peopleLabel {
+  margin-right: 22px;
+}
+#registrationBtn {
+  margin-top: 28px;
+  padding: 16px 120px;
+  border: none;
+  border-radius: 3px;
+  background-color: #448593;
+  font-size: 20px;
+}
+
 /* 바디 */
 body {
   font-family: "Montserrat", sans-serif;
@@ -111,6 +172,11 @@ body {
 .container {
   text-align: center;
 }
+.classDiv {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-items: center;
+}
 .title {
   font-size: 28px;
   position: relative;
@@ -118,13 +184,13 @@ body {
   font-family: "gongli";
 }
 #classBtn {
-  background-color: #D9D9D9;
-  width: 250px;
-  height: 225px;
+  display: inline-block;
+  background-color: #d9d9d9;
+  width: 300px;
+  height: 250px;
   font-size: 47px;
   border: none;
   border-radius: 3px;
   position: relative;
-  right: 380px;
-  top: 150px;
+  top: 100px;
 }
