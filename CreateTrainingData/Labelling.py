@@ -10,14 +10,21 @@ win.geometry("")
 
 
 def showImage(src:str):
-    img = cv2.imread(src)
-    img = resizeImg(img)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    img = Image.fromarray(img)
-    imgtk = ImageTk.PhotoImage(image=img)
-    label = tk.Label(win, image=imgtk)
-    label.image = imgtk
-    label.grid(row=0, column=0, columnspan=3)
+    try:
+        img = cv2.imread(src)
+        img = resizeImg(img)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        img = Image.fromarray(img)
+        imgtk = ImageTk.PhotoImage(image=img)
+        label = tk.Label(win, image=imgtk)
+        label.image = imgtk
+        label.grid(row=0, column=0, columnspan=3)
+    except:
+        for i in range(file_list.__len__()):
+            if file_list[i] == src:
+                del file_list[i]
+                break
+        showImage(file_list[0])
 
 
 def countJpgFiles(src:str):
@@ -39,6 +46,8 @@ def resizeImg(src:str):
     return dist
 
 file_list = os.listdir("croppedData")
+file_list.sort()
+file_list.sort(key=len)
 countIndex = 0
 on_count = countJpgFiles("on")
 off_count = countJpgFiles("off")
@@ -47,58 +56,59 @@ for i in range(file_list.__len__()):
     if file_list[i].endswith(".jpg"):
         global src
         src = "croppedData/" + file_list[i]
-        countIndex = i + 1
+        del file_list[i]
         break
+
+    else:
+        del file_list[i]
+
 showImage(src)
 
 def onClick_onButton():
-    global countIndex
     global on_count
     global src
-    os.rename("croppedData/" + file_list[countIndex-1], "on/on" + on_count.__str__() + ".jpg")
+    os.rename(src, "on/on" + on_count.__str__() + ".jpg")
     on_count += 1
-    countIndex += 1
     try:
-        for i in range(countIndex, file_list.__len__()):
+        for i in range(file_list.__len__()):
             if file_list[i].endswith(".jpg"):
                 src = "croppedData/" + file_list[i]
-                countIndex = i+1
+                del file_list[i]
                 break
     except IndexError:
         exit()
     showImage(src)
+
 
 def onClick_offButton():
-    global countIndex
     global off_count
     global src
-    os.rename("croppedData/" + file_list[countIndex-1], "off/off" + off_count.__str__() + ".jpg")
+    os.rename(src, "off/off" + off_count.__str__() + ".jpg")
     off_count += 1
-    countIndex += 1
     try:
-        for i in range(countIndex, file_list.__len__()):
+        for i in range(file_list.__len__()):
             if file_list[i].endswith(".jpg"):
                 src = "croppedData/" + file_list[i]
-                countIndex = i+1
+                del file_list[i]
                 break
     except IndexError:
         exit()
     showImage(src)
 
+
 def onClick_delete():
-    global countIndex
     global src
-    os.remove("croppedData/" + file_list[countIndex-1])
-    countIndex += 1
+    os.remove(src)
     try:
-        for i in range(countIndex, file_list.__len__()):
+        for i in range(file_list.__len__()):
             if file_list[i].endswith(".jpg"):
                 src = "croppedData/" + file_list[i]
-                countIndex = i + 1
+                del file_list[i]
                 break
     except IndexError:
         exit()
     showImage(src)
+
 
 on_button = tk.Button(win, text="ON", command=onClick_onButton)
 on_button.config(width=5, height= 2)
@@ -108,7 +118,7 @@ off_button = tk.Button(win, text="OFF", command=onClick_offButton)
 off_button.config(width=5, height= 2)
 off_button.grid(row=1, column=1)
 
-del_button = tk.Button(win, text="delete", command=onClick_delete)
+del_button = tk.Button(win, text="Delete", command=onClick_delete)
 del_button.config(width=5, height= 2)
 del_button.grid(row=1, column=2)
 win.mainloop()
