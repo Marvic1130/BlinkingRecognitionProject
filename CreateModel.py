@@ -63,7 +63,7 @@ model.add(Dense(2,activation = 'softmax'))
 
 model.summary()
 
-model.compile(loss='binary_crossentropy',optimizer='Adam',metrics=['accuracy'])
-hist=model.fit(X_train, Y_train, batch_size=100, epochs=200)
+model.compile(loss='binary_crossentropy', optimizer='Adam', metrics=['accuracy'])
+hist=model.fit(X_train, Y_train, batch_size=32, epochs=200)
 
 model.save('ONOFFMODEL.h5')

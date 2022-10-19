@@ -64,11 +64,7 @@ if __name__ == "__main__":
     cascade_filename = 'haarcascade_frontalface_alt.xml'
 
     cam = cv2.VideoCapture(0)
-    # cam = cv2.VideoCapture('sample.mp4')
-    # img = cv2.imread('sample.jpg')
-
     cascade = cv2.CascadeClassifier(cascade_filename)
 
     video_detector(cam, cascade)
-    # img_detector(cam, cascade)
 

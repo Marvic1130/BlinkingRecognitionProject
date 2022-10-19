@@ -1,39 +1,29 @@
+import os
 import random
 import time
-import os
 
-from keras.applications.mobilenet_v2 import preprocess_input
-from keras.models import load_model
-import numpy as np
 import cv2
+import numpy as np
+from keras.models import load_model
 
-def rename_file():
+
+def rename_file(dist_lable: str):
     count = 0
     file_list = os.listdir("croppedData")
     for i in range(file_list.__len__()):
         if file_list[i].endswith(".jpg"):
 
             src = "croppedData/" + file_list[i]
-            dst = "croppedData/crop" + count.__str__() + ".jpg"
+            dst = "croppedData/" + dist_lable + count.__str__() + ".jpg"
             os.rename(src, dst)
             print(src + " rename to " + dst)
             count += 1
 
-
-countIndex = 0
-file_list = os.listdir("croppedData")
-for i in range(file_list.__len__()):
-    if file_list[i].endswith(".jpg"):
-        src = "croppedData/" + file_list[i]
-        dst = "croppedData/temp" + countIndex.__str__() + ".jpg"
-        os.rename(src, dst)
-        print(src + " rename to " + dst)
-        countIndex += 1
+rename_file('temp')
 
 facenet = cv2.dnn.readNet('models/deploy.prototxt', 'models/res10_300x300_ssd_iter_140000.caffemodel')
 model = load_model('8LBMI2.h5')
 
-# 실시간 웹캠 읽기
 cap = cv2.VideoCapture(0)
 i = 0
 
@@ -73,13 +63,7 @@ while cap.isOpened():
         modelpredict = model.predict(face_input)
         mask=modelpredict[0][0]
         nomask=modelpredict[0][1]
-
-        if mask > nomask:
-            color = (0, 255, 0)
-            label = 'Mask %d%%' % (mask * 100)
-        else:
-            color = (0, 0, 255)
-            label = 'No Mask %d%%' % (nomask * 100)
+        color = (255, 255, 255)
 
         file_list = os.listdir("croppedData")
 
@@ -92,15 +76,11 @@ while cap.isOpened():
             print(e)
 
         cv2.rectangle(img, pt1=(x1, y1), pt2=(x2, y2), thickness=2, color=color, lineType=cv2.LINE_AA)
-        cv2.putText(img, text=label, org=(x1, y1 - 10), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.8,
-                    color=color, thickness=2, lineType=cv2.LINE_AA)
 
     cv2.imshow('masktest',img)
 
     key = cv2.waitKey(1)
-    if key == 'q' or key == 'Q' or key == 27 or key == 'ㅂ' or key == 'ㅃ':
-        break
-    if time.process_time() == 30:
+    if key == 27:
         break
 
-rename_file()
+rename_file('crop')
