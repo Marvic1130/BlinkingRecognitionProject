@@ -16,7 +16,7 @@ module.exports = class User extends Sequelize.Model {
         },
         pw: {
           //암호화 진행
-          type: Sequelize.STRING(20),
+          type: Sequelize.STRING,
           allowNull: false,
         },
         pNum: {
