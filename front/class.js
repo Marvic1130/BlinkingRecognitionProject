@@ -1,15 +1,3 @@
-// 햄버거 버튼
-const burger = $(".menu-trigger");
-
-burger.each(function (index) {
-  const $this = $(this);
-
-  $this.on("click", function (e) {
-    e.preventDefault();
-    $(this).toggleClass("active-" + (index + 1));
-  });
-});
-
 const classPlusBtn = document.querySelector("#classBtn"); // 수업 추가 버튼
 const registrationDiv = document.querySelector(".registration-container"); // 수업 등록 div
 const registrationBtn = document.querySelector("#registrationBtn"); // 수업 등록 버튼
