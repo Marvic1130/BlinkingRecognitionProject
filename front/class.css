@@ -95,12 +95,14 @@ input[id="trigger"]:checked + label span:nth-child(3) {
   font-size: 29px;
 }
 
-/* input[id=trigger]가 체크되었을 때 사이드바가 나오는 형제 인접자 */
+/* input[id=trigger]가 체크되었을 때 사이드바가 나오는 일반 형제 선택자 */
+/* input trigger가 checked 됬을때 뒤에 오는(바로 뒤 아니여도 됨) .sidebar에 적용 */
 input[id="trigger"]:checked ~ .sidebar {
   left: 0;
 }
 
-/* check시 같이 밀려나가는 CSS 햄버거 메뉴 */
+/* check시 같이 밀려나가는 CSS 햄버거 메뉴 인접 형제 선택자 */
+/* input trigger가 checked 됬을때 바로 뒤에 오는 label[for="trigger"]에 적용 */
 input[id="trigger"]:checked + label[for="trigger"] {
   left: 210px;
   transition: 0.3s;
