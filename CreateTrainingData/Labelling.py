@@ -24,7 +24,10 @@ def showImage(src:str):
             if file_list[i] == src:
                 del file_list[i]
                 break
-        showImage(file_list[0])
+        try:
+            showImage(file_list[0])
+        except IndexError:
+            exit()
 
 
 def countJpgFiles(src:str):
