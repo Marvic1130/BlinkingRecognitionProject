@@ -28,13 +28,13 @@ cap = cv2.VideoCapture(0)
 i = 0
 
 while cap.isOpened():
-    ret, img = cap.read()
+    ret, frame = cap.read()
     if not ret:
         break
 
-    h, w = img.shape[:2]
+    h, w = frame.shape[:2]
 
-    blob = cv2.dnn.blobFromImage(img, scalefactor=1., size=(405, 405), mean=(104., 177., 123.))
+    blob = cv2.dnn.blobFromImage(frame, scalefactor=1., size=(405, 405), mean=(104., 177., 123.))
     facenet.setInput(blob)
     dets = facenet.forward()
 
@@ -48,7 +48,7 @@ while cap.isOpened():
         x2 = int(dets[0, 0, i, 5] * w)
         y2 = int(dets[0, 0, i, 6] * h)
 
-        face = img[y1:y2, x1:x2]
+        face = frame[y1:y2, x1:x2]
         face = face/256
 
         if (x2 >= w or y2 >= h):
@@ -69,15 +69,15 @@ while cap.isOpened():
 
         cropped_data_path = "croppedData/temp" + random.randrange(0, 999999).__str__() + ".jpg"
         height_dist = (y2-y1)//2
-        crop = img[y1: y2-height_dist, x1: x2]
+        crop = frame[y1: y2 - height_dist, x1: x2]
         try:
             cv2.imwrite(cropped_data_path, crop)
         except Exception as e:
             print(e)
 
-        cv2.rectangle(img, pt1=(x1, y1), pt2=(x2, y2), thickness=2, color=color, lineType=cv2.LINE_AA)
+        cv2.rectangle(frame, pt1=(x1, y1), pt2=(x2, y2), thickness=2, color=color, lineType=cv2.LINE_AA)
 
-    cv2.imshow('masktest',img)
+    cv2.imshow('masktest', frame)
 
     key = cv2.waitKey(1)
     if key == 27:
