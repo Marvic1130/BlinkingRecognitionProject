@@ -1,9 +1,13 @@
 const express = require("express");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
-
-const { sequelize } = require("../src/models");
-
+const userRouter = require("./routers/userRouter");
+const { sequelize } = require("./models");
+// import express from "express";
+// import morgan from "morgan";
+// import dotenv from "dotenv";
+// import sequelize from "../src/models/index.js";
+// import userRouter from "./routers/userRouter.js";
 dotenv.config();
 const app = express();
 
@@ -13,9 +17,7 @@ app.use(morgan("dev")); // 요청과 응답에 대한 정보를 콘솔에 기록
 app.use(express.json()); // 폼 데이터나 AJAX요청의 데이터를 처리하는데 사용
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.send("HI");
-});
+app.use("/", userRouter);
 
 sequelize
   .sync({ force: false })

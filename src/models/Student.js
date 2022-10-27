@@ -1,29 +1,34 @@
-//수업명 , 교수, 학과, 수업시간, 장소, 인원수,학점
 const Sequelize = require("sequelize");
+
+//이름, 아이디, 패스워드, 소속대학, 학과, 학번
 module.exports = class User extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        className: {
+        name: {
           type: Sequelize.STRING(20),
           allowNull: false,
         },
-        professor: {
+        id: {
           type: Sequelize.STRING(20),
           allowNull: false,
           unique: true,
+          primaryKey: true,
+        },
+        pw: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        sNum: {
+          type: Sequelize.INTEGER(50),
+          allowNull: false,
+        },
+        college: {
+          type: Sequelize.STRING(50),
+          allowNull: false,
         },
         department: {
-          type: Sequelize.STRING(20),
-          allowNull: false,
-        },
-        classTime: {},
-        place: {
-          type: Sequelize.STRING(20),
-          allowNull: false,
-        },
-        people: {
-          type: Sequelize.INTEGER(50),
+          type: Sequelize.STRING(50),
           allowNull: false,
         },
       },
@@ -31,10 +36,10 @@ module.exports = class User extends Sequelize.Model {
         sequelize,
         timestamps: false,
         underscored: false,
-        modelName: "User", // 모델 이름을 설정, 노드 프로젝트에서 사용
-        tableName: "users",
+        modelName: "Student", // 모델 이름을 설정, 노드 프로젝트에서 사용
+        tableName: "Student",
         paranoid: false,
-        charset: "utf-8", //한글을 입력하기 위한 설정
+        charset: "utf8", //한글을 입력하기 위한 설정
         collate: "utf8_general_ci", //한글을 입력하기 위한 설정
       }
     );
