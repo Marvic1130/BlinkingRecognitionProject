@@ -1,19 +1,19 @@
 /* 폰트 */
 @font-face {
   font-family: "gong";
-  src: url("/font/Gong Gothic Medium.ttf");
+  src: url("/front/font/Gong/Gothic/Medium.ttf");
 }
 @font-face {
   font-family: "nanum";
-  src: url("/font/NanumSquareRoundB.ttf");
+  src: url("/front/font/NanumSquareRoundB.ttf");
 }
 @font-face {
   font-family: "gongli";
-  src: url("/font/Gong/Gothic/Light.ttf");
+  src: url("/front/font/Gong\ Gothic\ Light.ttf");
 }
 @font-face {
   font-family: "main";
-  src: url("/font/HS두꺼비체.ttf");
+  src: url("/front/font/HS두꺼비체.ttf");
 }
 
 /* 바디 */
