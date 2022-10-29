@@ -2,7 +2,11 @@ const bcrypt = require("bcrypt");
 const path = require("path");
 const Student = require("../models/Student");
 const Professor = require("../models/Professor");
+<<<<<<< HEAD
 const jwt = require("jsonwebtoken");
+=======
+
+>>>>>>> 8cdedcf (css, js 경로 설정 문제 해결)
 
 
 module.exports.home = (req, res) => {

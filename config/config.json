@@ -1,8 +1,13 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "gPal0412!@!",
     "database": "nodejs",
+=======
+    "password": "wodbs223",
+    "database": "database_backend",
+>>>>>>> 8cdedcf (css, js 경로 설정 문제 해결)
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
