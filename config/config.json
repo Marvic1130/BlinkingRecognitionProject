@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "jungseok0815",
-    "password": "kil79518",
-    "database": "jungseok",
-    "host": "jungseok.cemoqiuzn5ai.ap-northeast-2.rds.amazonaws.com",
+    "username": "root",
+    "password": "wodbs223",
+    "database": "database_backend",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {

@@ -2,6 +2,9 @@ const bcrypt = require("bcrypt");
 const path = require("path");
 const Student = require("../models/Student");
 const Professor = require("../models/Professor");
+
+
+
 module.exports.home = (req, res) => {
   res.send("hello");
 };
@@ -48,7 +51,6 @@ module.exports.professorJoin = async (req, res) => {
     console.log(err);
   }
 };
-
 
 module.exports.getLogin = async(req, res) =>{
   res.sendFile(path.join(__dirname + '../../../front/login.html'));
