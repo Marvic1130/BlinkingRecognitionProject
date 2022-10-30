@@ -9,6 +9,7 @@ const classRouter = require("./routers/classRouter");
 
 =======
 const path = require("path")
+
 // import express from "express";
 // import morgan from "morgan";
 // import dotenv from "dotenv";
@@ -24,13 +25,17 @@ app.use(morgan("dev")); // 요청과 응답에 대한 정보를 콘솔에 기록
 app.use(express.json()); // 폼 데이터나 AJAX요청의 데이터를 처리하는데 사용
 app.use(express.urlencoded({ extended: true }));
 
+<<<<<<< HEAD
 app.use("/", userRouter);
 <<<<<<< HEAD
 app.use("/class", classRouter);
 
 =======
 >>>>>>> 8cdedcf (css, js 경로 설정 문제 해결)
+=======
+>>>>>>> 9ad8d56 (login 프론트 백 연결 완료)
 app.use("/", express.static(path.join(__dirname + "../../")))
+app.use("/", userRouter);
 
 sequelize
   .sync({ force: false })

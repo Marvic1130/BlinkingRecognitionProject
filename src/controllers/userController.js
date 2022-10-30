@@ -3,21 +3,29 @@ const path = require("path");
 const Student = require("../models/Student");
 const Professor = require("../models/Professor");
 <<<<<<< HEAD
+<<<<<<< HEAD
 const jwt = require("jsonwebtoken");
 =======
 
 >>>>>>> 8cdedcf (css, js 경로 설정 문제 해결)
+=======
+const jwt = require("jsonwebtoken");
+>>>>>>> 9ad8d56 (login 프론트 백 연결 완료)
 
 
 module.exports.home = (req, res) => {
   return res.send("hello");
 };
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 9ad8d56 (login 프론트 백 연결 완료)
 //이름, 아이디, 패스워드, 소속대학, 학과, 학번
 module.exports.studentJoin = async (req, res) => {
   const { id, pw, college, name, department, sNum } = req.body;
+  console.log(req.body)
   const encryption = bcrypt.hashSync(pw, 5);
 
   try {
@@ -58,6 +66,10 @@ module.exports.professorJoin = async (req, res) => {
 
 module.exports.getLogin = async(req, res) =>{
   return res.sendFile(path.join(__dirname + '../../../front/login.html'));
+}
+
+module.exports.getSjoin = async(req, res) =>{
+  res.sendFile(path.join(__dirname + '../../../front/studentSignup.html'));
 }
 
 module.exports.login = async (req, res) => {
@@ -194,3 +206,4 @@ module.exports.logout = async (req, res) => {
     console.log(err);
   }
 };
+
