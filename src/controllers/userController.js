@@ -2,15 +2,17 @@ const bcrypt = require("bcrypt");
 const path = require("path");
 const Student = require("../models/Student");
 const Professor = require("../models/Professor");
-
+const jwt = require("jsonwebtoken");
 
 
 module.exports.home = (req, res) => {
   res.send("hello");
 };
+
 //이름, 아이디, 패스워드, 소속대학, 학과, 학번
 module.exports.studentJoin = async (req, res) => {
   const { id, pw, college, name, department, sNum } = req.body;
+  console.log(req.body)
   const encryption = bcrypt.hashSync(pw, 5);
 
   try {
@@ -56,6 +58,10 @@ module.exports.getLogin = async(req, res) =>{
   res.sendFile(path.join(__dirname + '../../../front/login.html'));
 }
 
+module.exports.getSjoin = async(req, res) =>{
+  res.sendFile(path.join(__dirname + '../../../front/studentSignup.html'));
+}
+
 module.exports.login = async (req, res) => {
   const { id, pw, name } = req.body;
   try {
@@ -71,12 +77,12 @@ module.exports.login = async (req, res) => {
       } else {
         const accessToken = jwt.sign(
           {
-            name: userInfo1.name,
-            id: userInfo1.id,
-            pw: userInfo1.pw,
-            sNum: userInfo1.sNum,
-            college: userInfo1.college,
-            department: userInfo1.department,
+            name: sUserInfo.name,
+            id: sUserInfo.id,
+            pw: sUserInfo.pw,
+            sNum: sUserInfo.sNum,
+            college: sUserInfo.college,
+            department: sUserInfo.department,
           },
           process.env.ACCESS_SECRET,
           {
@@ -87,11 +93,11 @@ module.exports.login = async (req, res) => {
         //refresh Token 발급
         const refreshToken = jwt.sign(
           {
-            id: userInfo1.id,
-            pw: userInfo1.pw,
-            sNum: userInfo1.sNum,
-            college: userInfo1.college,
-            department: userInfo1.department,
+            id: sUserInfo.id,
+            pw: sUserInfo.pw,
+            sNum: sUserInfo.sNum,
+            college: sUserInfo.college,
+            department: sUserInfo.department,
           },
           process.env.REFRESH_SECRET,
           {
@@ -123,12 +129,12 @@ module.exports.login = async (req, res) => {
       } else {
         const accessToken = jwt.sign(
           {
-            name: userInfo1.name,
-            id: userInfo1.id,
-            pw: userInfo1.pw,
-            sNum: userInfo1.sNum,
-            college: userInfo1.college,
-            department: userInfo1.department,
+            name: pUserInfo.name,
+            id: pUserInfo.id,
+            pw: pUserInfo.pw,
+            sNum: pUserInfo.sNum,
+            college: pUserInfo.college,
+            department: pUserInfo.department,
           },
           process.env.ACCESS_SECRET,
           {
@@ -139,11 +145,11 @@ module.exports.login = async (req, res) => {
         //refresh Token 발급
         const refreshToken = jwt.sign(
           {
-            id: userInfo1.id,
-            pw: userInfo1.pw,
-            sNum: userInfo1.sNum,
-            college: userInfo1.college,
-            department: userInfo1.department,
+            id: pUserInfo.id,
+            pw: pUserInfo.pw,
+            sNum: pUserInfo.sNum,
+            college: pUserInfo.college,
+            department: pUserInfo.department,
           },
           process.env.REFRESH_SECRET,
           {
@@ -190,3 +196,4 @@ module.exports.logout = async (req, res) => {
     console.log(err);
   }
 };
+

@@ -65,3 +65,14 @@ body {
   font-size: 18px;
   font-family: "nanum";
 }
+#signupBt {
+  margin-top: 28px;
+  padding: 10px 80px;
+  border: none;
+  border-radius: 3px;
+  background-color: #325d66;
+  font-size: 18px;
+  font-family: "nanum";
+  position: relative;
+  top: 225px;
+}
