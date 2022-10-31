@@ -4,8 +4,8 @@ const authToken = require("../middlewares");
 
 const classRouter = express.Router(); //라우터 생성
 
-classRouter.post("/register", authToken, classes.register);
+//미들웨어 설정
+classRouter.route("/register").all(authToken).post(classes.register)
 classRouter.post("/find", classes.find);
 
-// export default userRouter;
 module.exports = classRouter;
