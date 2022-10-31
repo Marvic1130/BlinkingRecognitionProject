@@ -3,12 +3,9 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const userRouter = require("./routers/userRouter");
 const { sequelize } = require("./models");
-const path = require("path")
-// import express from "express";
-// import morgan from "morgan";
-// import dotenv from "dotenv";
-// import sequelize from "../src/models/index.js";
-// import userRouter from "./routers/userRouter.js";
+const path = require("path");
+const classRouter = require("./routers/classRouter");
+
 dotenv.config();
 const app = express();
 
@@ -19,6 +16,8 @@ app.use(express.json()); // 폼 데이터나 AJAX요청의 데이터를 처리�
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/", userRouter);
+app.use("/class", classRouter);
+
 app.use("/", express.static(path.join(__dirname + "../../")))
 
 sequelize

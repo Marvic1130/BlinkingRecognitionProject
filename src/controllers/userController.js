@@ -2,12 +2,13 @@ const bcrypt = require("bcrypt");
 const path = require("path");
 const Student = require("../models/Student");
 const Professor = require("../models/Professor");
-
+const jwt = require("jsonwebtoken");
 
 
 module.exports.home = (req, res) => {
-  res.send("hello");
+  return res.send("hello");
 };
+
 //이름, 아이디, 패스워드, 소속대학, 학과, 학번
 module.exports.studentJoin = async (req, res) => {
   const { id, pw, college, name, department, sNum } = req.body;
@@ -25,7 +26,7 @@ module.exports.studentJoin = async (req, res) => {
       college,
       department,
     });
-    res.redirect("/login");
+    return res.redirect("/login");
   } catch (err) {
     //err 확인 코드
     console.log(err);
@@ -46,14 +47,14 @@ module.exports.professorJoin = async (req, res) => {
       college,
       department,
     });
-    res.redirect("/login");
+    return res.redirect("/login");
   } catch (err) {
     console.log(err);
   }
 };
 
 module.exports.getLogin = async(req, res) =>{
-  res.sendFile(path.join(__dirname + '../../../front/login.html'));
+  return res.sendFile(path.join(__dirname + '../../../front/login.html'));
 }
 
 module.exports.login = async (req, res) => {
@@ -71,12 +72,12 @@ module.exports.login = async (req, res) => {
       } else {
         const accessToken = jwt.sign(
           {
-            name: userInfo1.name,
-            id: userInfo1.id,
-            pw: userInfo1.pw,
-            sNum: userInfo1.sNum,
-            college: userInfo1.college,
-            department: userInfo1.department,
+            name: sUserInfo.name,
+            id: sUserInfo.id,
+            pw: sUserInfo.pw,
+            sNum: sUserInfo.sNum,
+            college: sUserInfo.college,
+            department: sUserInfo.department,
           },
           process.env.ACCESS_SECRET,
           {
@@ -87,11 +88,11 @@ module.exports.login = async (req, res) => {
         //refresh Token 발급
         const refreshToken = jwt.sign(
           {
-            id: userInfo1.id,
-            pw: userInfo1.pw,
-            sNum: userInfo1.sNum,
-            college: userInfo1.college,
-            department: userInfo1.department,
+            id: sUserInfo.id,
+            pw: sUserInfo.pw,
+            sNum: sUserInfo.sNum,
+            college: sUserInfo.college,
+            department: sUserInfo.department,
           },
           process.env.REFRESH_SECRET,
           {
@@ -111,8 +112,8 @@ module.exports.login = async (req, res) => {
             httpOnly: true,
           };
 
-        res.status(200).json("login success"); //토큰 보내기!
         console.log("Student Login");
+        return res.status(200).json("login success"); //토큰 보내기!
       }
     } else if (pUserInfo) {
       const pwCorrect = await bcrypt.compare(pw, pUserInfo.pw);
@@ -123,12 +124,12 @@ module.exports.login = async (req, res) => {
       } else {
         const accessToken = jwt.sign(
           {
-            name: userInfo1.name,
-            id: userInfo1.id,
-            pw: userInfo1.pw,
-            sNum: userInfo1.sNum,
-            college: userInfo1.college,
-            department: userInfo1.department,
+            name: pUserInfo.name,
+            id: pUserInfo.id,
+            pw: pUserInfo.pw,
+            sNum: pUserInfo.sNum,
+            college: pUserInfo.college,
+            department: pUserInfo.department,
           },
           process.env.ACCESS_SECRET,
           {
@@ -139,11 +140,11 @@ module.exports.login = async (req, res) => {
         //refresh Token 발급
         const refreshToken = jwt.sign(
           {
-            id: userInfo1.id,
-            pw: userInfo1.pw,
-            sNum: userInfo1.sNum,
-            college: userInfo1.college,
-            department: userInfo1.department,
+            id: pUserInfo.id,
+            pw: pUserInfo.pw,
+            sNum: pUserInfo.sNum,
+            college: pUserInfo.college,
+            department: pUserInfo.department,
           },
           process.env.REFRESH_SECRET,
           {
@@ -163,12 +164,12 @@ module.exports.login = async (req, res) => {
             httpOnly: true,
           };
 
-        res.status(200).json("login success"); //토큰 보내기!
         console.log("Professor Login");
+        return res.status(200).json("login success"); //토큰 보내기!
       }
     } else {
       console.log("There is no user!!");
-      res.sendStatus(400);
+      return res.sendStatus(400);
     }
   } catch (err) {
     console.log(err);
@@ -185,7 +186,7 @@ module.exports.logout = async (req, res) => {
       college,
       department,
     });
-    res.redirect("/login");
+    return res.redirect("/login");
   } catch (err) {
     console.log(err);
   }
