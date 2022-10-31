@@ -64,8 +64,11 @@ for i in range(file_list.__len__()):
 
     else:
         del file_list[i]
+try:
+    showImage(src)
 
-showImage(src)
+except:
+    exit()
 
 def onClick_onButton():
     global on_count
@@ -114,15 +117,15 @@ def onClick_delete():
 
 
 on_button = tk.Button(win, text="ON", command=onClick_onButton)
-on_button.config(width=5, height= 2)
+on_button.config(width=5, height=2)
 on_button.grid(row=1, column=0)
 
 off_button = tk.Button(win, text="OFF", command=onClick_offButton)
-off_button.config(width=5, height= 2)
+off_button.config(width=5, height=2)
 off_button.grid(row=1, column=1)
 
 del_button = tk.Button(win, text="Delete", command=onClick_delete)
-del_button.config(width=5, height= 2)
+del_button.config(width=5, height=2)
 del_button.grid(row=1, column=2)
 win.mainloop()
 
