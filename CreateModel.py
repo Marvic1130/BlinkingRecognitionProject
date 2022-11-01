@@ -1,6 +1,7 @@
 from keras.models import Sequential
 from keras.layers import Dropout, Dense
 from keras.layers import Flatten, Convolution2D, MaxPooling2D, Conv2D
+from keras.callbacks import EarlyStopping, ModelCheckpoint
 from sklearn.metrics import f1_score, accuracy_score, log_loss
 from sklearn.model_selection import train_test_split
 import os
@@ -70,7 +71,13 @@ model.add(Dense(2, activation='softmax'))
 model.summary()
 
 model.compile(loss='binary_crossentropy', optimizer='Adam', metrics=['accuracy'])
-hist = model.fit(X_train, Y_train, batch_size=64, epochs=50)
+
+modelpath = 'ONOFFMODEL.h5'
+
+early_stopping_calback = EarlyStopping(monitor='loss', patience=10)
+checkpointer = ModelCheckpoint(filepath=modelpath, monitor='loss', verbose=0, save_best_only=True)
+
+hist = model.fit(X_train, Y_train, batch_size=64, epochs=200, callbacks=[early_stopping_calback, checkpointer])
 
 plt.figure(figsize=(12, 8))
 plt.plot(hist.history['loss'])
@@ -79,7 +86,7 @@ plt.legend(['loss', 'acc'])
 plt.grid()
 plt.show()
 
-model.save('ONOFFMODEL.h5')
+model.save(modelpath)
 
 y_predicted = model.predict(X_test)
 y_pred = []
