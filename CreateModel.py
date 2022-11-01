@@ -74,7 +74,7 @@ model.compile(loss='binary_crossentropy', optimizer='Adam', metrics=['accuracy']
 
 modelpath = 'ONOFFMODEL.h5'
 
-early_stopping_calback = EarlyStopping(monitor='loss', patience=10)
+early_stopping_calback = EarlyStopping(monitor='loss', patience=1)
 checkpointer = ModelCheckpoint(filepath=modelpath, monitor='loss', verbose=0, save_best_only=True)
 
 hist = model.fit(X_train, Y_train, batch_size=64, epochs=200, callbacks=[early_stopping_calback, checkpointer])
