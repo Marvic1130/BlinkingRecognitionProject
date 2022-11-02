@@ -12,6 +12,7 @@ classBtn.addEventListener("click", () => {
 
 const finishBtn = document.querySelector("#finishBtn"); // 수업 등록 완료 버튼
 const classDiv = document.querySelector(".classDiv"); // 수업 목록
+let uniqueCount = 1;
 
 finishBtn.addEventListener("click", () => {
   // 클릭해서
@@ -20,10 +21,22 @@ finishBtn.addEventListener("click", () => {
     const optionValue = document.querySelector("#classSelect"); // 셀렉트 박스
     let value = optionValue.options[optionValue.selectedIndex].text; // 셀렉트 박스에서 옵션값 가져오기
     const childBtn = document.createElement("button"); // 새로운 버튼 엘리먼트 생성
-    childBtn.id = "classBtn"; // 버튼 스타일 통일
+    childBtn.id = "classBtn" + uniqueCount; // 버튼 스타일 통일
+    uniqueCount += 1;
     childBtn.innerText = value; // 새로운 버튼 text 옵션값으로 넣음
     classDiv.appendChild(childBtn); // class 목록에 새로운 수업 자식으로 붙이기
     classDiv.appendChild(classBtn); // 그 후 플러스 버튼 붙이기
     selectContainer.style.display = "none"; // 다시 셀렉트 컨테이너 none
   }
+});
+
+// a태그 감싸기 -> 동적으로 생선되는 엘리먼트에 이벤트 달아서 실패
+const lectureBtn = document.querySelector("#classBtn1");
+const aTag = document.createElement("a");
+
+lectureBtn.addEventListener("click", () => {
+  aTag.innerHTML = lectureBtn.outerHTML;
+  aTag.setAttribute("href", "/lectureEvaluation");
+  lectureBtn.parentNode.insertBefore(aTag, lectureBtn);
+  lectureBtn.remove();
 });
