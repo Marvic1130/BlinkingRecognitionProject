@@ -36,6 +36,7 @@ app.use("/class", classRouter);
 >>>>>>> 9ad8d56 (login 프론트 백 연결 완료)
 app.use("/", express.static(path.join(__dirname + "../../")))
 app.use("/", userRouter);
+app.use("/selectSignup",userRouter);
 
 sequelize
   .sync({ force: false })

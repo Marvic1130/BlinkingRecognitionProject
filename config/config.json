@@ -2,10 +2,14 @@
   "development": {
     "username": "root",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "password": "gPal0412!@!",
     "database": "nodejs",
 =======
     "password": "wodbs223",
+=======
+    "password": "0000",
+>>>>>>> e9fddcb (회원가입)
     "database": "database_backend",
 >>>>>>> 8cdedcf (css, js 경로 설정 문제 해결)
     "host": "127.0.0.1",

@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/front/Signup.css" />
-    <title>회원가입(학생)</title>
+    <title>회원가입(교수)</title>
   </head>
   <body>
     <!-- 수업 등록 -->
     <div class="registration-container">
-      <h1 class="title">회원가입(학생)</h1>
+      <h1 class="title">회원가입(교수)</h1>
       <div class="classBox">
         <div class="formBox">
-          <form method="POST" action="/sJoin">
+          <form method="POST" action="/pJoin">
             <label for="id" id="idLabel">ID</label>
             <input type="text" id="id" name="id" /><br />
             <label for="pw" id="pwLabel">PW</label>
@@ -23,8 +23,8 @@
             <input type="text" id="name" name="name" /><br />
             <label for="department" id="departmentLabel">학과</label>
             <input type="text" id="department" name="department" /><br />
-            <label for="sNum" id="sNumLabel">학번</label>
-            <input type="number" id="sNum" name="sNum" /><br />
+            <label for="pNum" id="pNumLabel"> 사번</label>
+            <input type="number" id="pNum" name="pNum" /><br />
             <button id="registrationBtn">가입하기</button>
           </form>
         </div>

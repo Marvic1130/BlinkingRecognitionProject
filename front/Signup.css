@@ -56,6 +56,13 @@
   border-radius: 2px;
   margin: 10px;
 }
+#pNum {
+  width: 310px;
+  height: 30px;
+  border: none;
+  border-radius: 2px;
+  margin: 10px;
+}
 #idLabel {
   margin-right: 22px;
 }
@@ -71,9 +78,20 @@
 #sNumLabel {
   margin-right: 22px;
 }
+#pNumLabel {
+  margin-right: 22px;
+}
 #registrationBtn {
   margin-top: 28px;
   padding: 16px 120px;
+  border: none;
+  border-radius: 3px;
+  background-color: #448593;
+  font-size: 20px;
+}
+#signupBtn{
+  margin-top: 28px;
+  padding: 110px 120px;
   border: none;
   border-radius: 3px;
   background-color: #448593;
