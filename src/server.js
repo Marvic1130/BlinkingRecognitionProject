@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/", express.static(path.join(__dirname + "../../")))
 app.use("/", userRouter);
+app.use("/selectSignup",userRouter);
 
 sequelize
   .sync({ force: false })

@@ -60,6 +60,12 @@ module.exports.getLogin = async(req, res) =>{
 module.exports.getSjoin = async(req, res) =>{
   res.sendFile(path.join(__dirname + '../../../front/studentSignup.html'));
 }
+module.exports.getPjoin=async(req,res)=>{
+  res.sendFile(path.join(__dirname + '../../../front/professorSignup.html'));
+}
+module.exports.getjoin=async(req,res)=>{
+  res.sendFile(path.join(__dirname + '../../../front/selectSignup.html'));
+}
 
 module.exports.login = async (req, res) => {
   const { id, pw, name } = req.body;
