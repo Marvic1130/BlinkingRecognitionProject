@@ -25,7 +25,6 @@ module.exports.home = (req, res) => {
 //이름, 아이디, 패스워드, 소속대학, 학과, 학번
 module.exports.studentJoin = async (req, res) => {
   const { id, pw, college, name, department, sNum } = req.body;
-  console.log(req.body)
   const encryption = bcrypt.hashSync(pw, 5);
 
   try {
@@ -127,6 +126,11 @@ module.exports.login = async (req, res) => {
             httpOnly: true,
           };
 
+<<<<<<< HEAD
+=======
+        // res.status(200).json("login success"); //토큰 보내기!
+        res.sendFile(path.join(__dirname + '../../../front/classStudent.html'));
+>>>>>>> 111f42d (프론트 - 강의평가 페이지)
         console.log("Student Login");
         return res.status(200).json("login success"); //토큰 보내기!
       }
@@ -179,6 +183,11 @@ module.exports.login = async (req, res) => {
             httpOnly: true,
           };
 
+<<<<<<< HEAD
+=======
+        // res.status(200).json("login success"); //토큰 보내기!
+        res.sendFile(path.join(__dirname + '../../../front/classProfessor.html'));
+>>>>>>> 111f42d (프론트 - 강의평가 페이지)
         console.log("Professor Login");
         return res.status(200).json("login success"); //토큰 보내기!
       }
