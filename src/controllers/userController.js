@@ -76,6 +76,9 @@ module.exports.getPjoin=async(req,res)=>{
 module.exports.getjoin=async(req,res)=>{
   res.sendFile(path.join(__dirname + '../../../front/selectSignup.html'));
 }
+module.exports.getLectureEvaluation=async(req,res)=>{
+  res.sendFile(path.join(__dirname + '../../../front/lectureEvaluation.html'));
+}
 
 module.exports.login = async (req, res) => {
   const { id, pw, name } = req.body;
