@@ -45,6 +45,6 @@ module.exports = class User extends Sequelize.Model {
     );
   }
   static associate(db){
-    db.Student.hasMany(db.Class, {foreignKey : sClassId, sourceKey: id});
+    db.Student.hasMany(db.Class, {foreignKey : "sClassId", sourceKey: "id"});
   }
 };

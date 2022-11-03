@@ -81,7 +81,7 @@ module.exports.login = async (req, res) => {
           },
           process.env.ACCESS_SECRET,
           {
-            expiresIn: "1m",
+            expiresIn: "10m",
             issuer: "jungseok",
           }
         );
@@ -133,7 +133,7 @@ module.exports.login = async (req, res) => {
           },
           process.env.ACCESS_SECRET,
           {
-            expiresIn: "1m",
+            expiresIn: "10m",
             issuer: "jungseok",
           }
         );
