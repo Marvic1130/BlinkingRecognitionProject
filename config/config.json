@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "0000",
+    "password": "wodbs223",
     "database": "database_backend",
     "host": "127.0.0.1",
     "dialect": "mysql"

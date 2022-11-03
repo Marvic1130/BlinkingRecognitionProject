@@ -44,8 +44,24 @@
   position: relative;
   top: 82px;
 }
-#id,
-#pw,
+#id {
+  width: 310px;
+  height: 30px;
+  border: none;
+  border-radius: 2px;
+  margin: 10px;
+  position: relative;
+  left: 8px;
+}
+#pw {
+  width: 310px;
+  height: 30px;
+  border: none;
+  border-radius: 2px;
+  margin: 10px;
+  position: relative;
+  left: 2px;
+}
 #college,
 #name,
 #department,
@@ -63,21 +79,12 @@
   border-radius: 2px;
   margin: 10px;
 }
-#idLabel {
-  margin-right: 22px;
-}
-#collegeLabel {
-  margin-right: 40px;
-}
-#nameLabel {
-  margin-right: 40px;
-}
-#departmentLabel {
-  margin-right: 40px;
-}
-#sNumLabel {
-  margin-right: 22px;
-}
+#idLabel,
+#pwLabel,
+#collegeLabel,
+#nameLabel,
+#departmentLabel,
+#sNumLabel,
 #pNumLabel {
   margin-right: 22px;
 }
@@ -89,7 +96,7 @@
   background-color: #448593;
   font-size: 20px;
 }
-#signupBtn{
+#signupBtn {
   margin-top: 28px;
   padding: 110px 120px;
   border: none;
