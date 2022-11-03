@@ -3,6 +3,7 @@
     "username": "root",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "password": "gPal0412!@!",
     "database": "nodejs",
 =======
@@ -10,6 +11,9 @@
 =======
     "password": "0000",
 >>>>>>> e9fddcb (회원가입)
+=======
+    "password": "wodbs223",
+>>>>>>> 05d1664 (풀을 위한 변경사항 저장)
     "database": "database_backend",
 >>>>>>> 8cdedcf (css, js 경로 설정 문제 해결)
     "host": "127.0.0.1",
