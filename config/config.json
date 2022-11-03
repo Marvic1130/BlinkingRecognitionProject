@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "jungseok0815",
-    "password": "kil79518",
-    "database": "jungseok",
-    "host": "jungseok.cemoqiuzn5ai.ap-northeast-2.rds.amazonaws.com",
-    "dialect": "mysql"
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "",
+    "dialect": ""
   },
   "test": {
     "username": "root",
