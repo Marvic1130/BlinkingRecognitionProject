@@ -1,22 +1,8 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "password": "gPal0412!@!",
-<<<<<<< HEAD
-    "database": "blinkDatabase",
-=======
-    "password": "wodbs223",
-    "database": "database_backend",
->>>>>>> 8cdedcf (css, js 경로 설정 문제 해결)
-=======
-    "password": "gPal0412!@!",
-    "database": "blinkDatabase",
->>>>>>> 38919d1 (database 재설정 및 database 간의 관계설정)
-=======
     "database": "nodejs",
->>>>>>> aa0db4d (token 유효성검사)
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
