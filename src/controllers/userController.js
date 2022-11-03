@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const Student = require("../models/Student");
 const Professor = require("../models/Professor");
+const jwt = require("jsonwebtoken");
 module.exports.home = (req, res) => {
   res.send("hello");
 };
@@ -61,14 +62,20 @@ module.exports.login = async (req, res) => {
         console.log("Password is wrong!");
         res.sendStatus(400);
       } else {
+        console.log(
+          sUserInfo.id,
+          sUserInfo.name,
+          sUserInfo.college,
+          sUserInfo.sNum
+        );
         const accessToken = jwt.sign(
           {
-            name: userInfo1.name,
-            id: userInfo1.id,
-            pw: userInfo1.pw,
-            sNum: userInfo1.sNum,
-            college: userInfo1.college,
-            department: userInfo1.department,
+            name: sUserInfo.name,
+            id: sUserInfo.id,
+            pw: sUserInfo.pw,
+            sNum: sUserInfo.sNum,
+            college: sUserInfo.college,
+            department: sUserInfo.department,
           },
           process.env.ACCESS_SECRET,
           {
@@ -79,11 +86,11 @@ module.exports.login = async (req, res) => {
         //refresh Token 발급
         const refreshToken = jwt.sign(
           {
-            id: userInfo1.id,
-            pw: userInfo1.pw,
-            sNum: userInfo1.sNum,
-            college: userInfo1.college,
-            department: userInfo1.department,
+            id: sUserInfo.id,
+            pw: sUserInfo.pw,
+            sNum: sUserInfo.sNum,
+            college: sUserInfo.college,
+            department: sUserInfo.department,
           },
           process.env.REFRESH_SECRET,
           {
@@ -113,14 +120,20 @@ module.exports.login = async (req, res) => {
         console.log("Password is wrong!");
         res.sendStatus(400);
       } else {
+        console.log(
+          pUserInfo.name,
+          pUserInfo.id,
+          pUserInfo.pNum,
+          pUserInfo.college
+        );
         const accessToken = jwt.sign(
           {
-            name: userInfo1.name,
-            id: userInfo1.id,
-            pw: userInfo1.pw,
-            sNum: userInfo1.sNum,
-            college: userInfo1.college,
-            department: userInfo1.department,
+            name: pUserInfo.name,
+            id: pUserInfo.id,
+            pw: pUserInfo.pw,
+            sNum: pUserInfo.sNum,
+            college: pUserInfo.college,
+            department: pUserInfo.department,
           },
           process.env.ACCESS_SECRET,
           {
@@ -131,11 +144,11 @@ module.exports.login = async (req, res) => {
         //refresh Token 발급
         const refreshToken = jwt.sign(
           {
-            id: userInfo1.id,
-            pw: userInfo1.pw,
-            sNum: userInfo1.sNum,
-            college: userInfo1.college,
-            department: userInfo1.department,
+            id: pUserInfo.id,
+            pw: pUserInfo.pw,
+            sNum: pUserInfo.sNum,
+            college: pUserInfo.college,
+            department: pUserInfo.department,
           },
           process.env.REFRESH_SECRET,
           {
