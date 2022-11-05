@@ -5,6 +5,7 @@ const Professor = require("../models/Professor");
 <<<<<<< HEAD
 <<<<<<< HEAD
 const jwt = require("jsonwebtoken");
+<<<<<<< HEAD
 =======
 
 =======
@@ -13,6 +14,13 @@ const jwt = require("jsonwebtoken");
 
 
 >>>>>>> 5228191 (css, js 경로 설정 문제 해결)
+=======
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> d6a0e92 (#1)
+>>>>>>> 606ccf9 (#1)
 module.exports.home = (req, res) => {
   return res.send("hello");
 };
