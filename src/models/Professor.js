@@ -49,7 +49,11 @@ module.exports = class User extends Sequelize.Model {
     db.Professor.hasMany(db.Class, { foreignKey: "pClassId", sourceKey: "id" });
 =======
   static associate(db){
+<<<<<<< HEAD
     db.Professor.hasMany(db.Class, {foreignKey : pClassId, sourceKey: id});
 >>>>>>> b1aac22 (database 재설정 및 database 간의 관계설정)
+=======
+    db.Professor.hasMany(db.Class, {foreignKey : "pClassId", sourceKey: "id"});
+>>>>>>> 3939b02 (#class 등록 api, 검색기능, token 유효성 검사)
   }
 };

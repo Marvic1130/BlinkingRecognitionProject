@@ -17,7 +17,7 @@ module.exports = class User extends Sequelize.Model {
           allowNull: false,
         },
         classTime: {
-          type: Sequelize.INTEGER(50),
+          type: Sequelize.STRING(50),
           allowNull: false,
         },
         place: {
@@ -50,8 +50,8 @@ module.exports = class User extends Sequelize.Model {
     });
 =======
   static associate(db){
-    db.Class.belongsTo(db.Student, {foreignKey : sClassId, targetKey: id});
-    db.Class.belongsTo(db.Professor, {foreignKey : pClassId, targetKey: id});
+    db.Class.belongsTo(db.Student, {foreignKey : "sClassId", targetKey: "id"});
+    db.Class.belongsTo(db.Professor, {foreignKey : "pClassId", targetKey: "id"});
 
 >>>>>>> b1aac22 (database 재설정 및 database 간의 관계설정)
   }
