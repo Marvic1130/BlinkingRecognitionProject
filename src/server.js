@@ -40,9 +40,17 @@ app.use("/", express.static(path.join(__dirname + "../../")));
 =======
 app.use("/class", classRouter);
 
+<<<<<<< HEAD
 >>>>>>> 769b83b (token 유효성검사)
 app.use("/", express.static(path.join(__dirname + "../../")))
 >>>>>>> 5228191 (css, js 경로 설정 문제 해결)
+=======
+<<<<<<< HEAD
+app.use("/", express.static(path.join(__dirname + "../../")))
+=======
+app.use("/", express.static(path.join(__dirname + "../../")));
+>>>>>>> 0445ee5 (#토큰 유효성검사, 검색기능, class등록 api등록)
+>>>>>>> 9f34dc5 (#2)
 
 sequelize
   .sync({ force: false })

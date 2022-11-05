@@ -18,7 +18,11 @@ classRouter.post("/find", classes.find);
 >>>>>>> 769b83b (token 유효성검사)
 =======
 //미들웨어 설정
+<<<<<<< HEAD
 classRouter.route("/register").all(authToken).post(classes.register)
+=======
+classRouter.route("/register").all(authToken).post(classes.register);
+>>>>>>> 0445ee5 (#토큰 유효성검사, 검색기능, class등록 api등록)
 classRouter.post("/find", classes.find);
 
 >>>>>>> dce9d63 (class 등록, class 검색 기능 구현)
