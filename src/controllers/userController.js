@@ -2,7 +2,13 @@ const bcrypt = require("bcrypt");
 const path = require("path");
 const Student = require("../models/Student");
 const Professor = require("../models/Professor");
+<<<<<<< HEAD
 const jwt = require("jsonwebtoken");
+=======
+
+
+
+>>>>>>> 5228191 (css, js 경로 설정 문제 해결)
 module.exports.home = (req, res) => {
   res.send("hello");
 };
@@ -49,7 +55,6 @@ module.exports.professorJoin = async (req, res) => {
     console.log(err);
   }
 };
-
 
 module.exports.getLogin = async(req, res) =>{
   res.sendFile(path.join(__dirname + '../../../front/login.html'));
