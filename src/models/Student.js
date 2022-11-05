@@ -44,7 +44,12 @@ module.exports = class User extends Sequelize.Model {
       }
     );
   }
+<<<<<<< HEAD
   static associate(db) {
     db.Student.hasMany(db.Class, { foreignKey: "sClassId", sourceKey: "id" });
+=======
+  static associate(db){
+    db.Student.hasMany(db.Class, {foreignKey : sClassId, sourceKey: id});
+>>>>>>> b1aac22 (database 재설정 및 database 간의 관계설정)
   }
 };
