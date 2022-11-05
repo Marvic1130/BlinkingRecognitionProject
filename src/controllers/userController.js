@@ -3,15 +3,20 @@ const path = require("path");
 const Student = require("../models/Student");
 const Professor = require("../models/Professor");
 <<<<<<< HEAD
+<<<<<<< HEAD
 const jwt = require("jsonwebtoken");
 =======
 
+=======
+const jwt = require("jsonwebtoken");
+>>>>>>> 769b83b (token 유효성검사)
 
 
 >>>>>>> 5228191 (css, js 경로 설정 문제 해결)
 module.exports.home = (req, res) => {
-  res.send("hello");
+  return res.send("hello");
 };
+
 //이름, 아이디, 패스워드, 소속대학, 학과, 학번
 module.exports.studentJoin = async (req, res) => {
   const { id, pw, college, name, department, sNum } = req.body;
@@ -29,7 +34,7 @@ module.exports.studentJoin = async (req, res) => {
       college,
       department,
     });
-    res.redirect("/login");
+    return res.redirect("/login");
   } catch (err) {
     //err 확인 코드
     console.log(err);
@@ -50,14 +55,14 @@ module.exports.professorJoin = async (req, res) => {
       college,
       department,
     });
-    res.redirect("/login");
+    return res.redirect("/login");
   } catch (err) {
     console.log(err);
   }
 };
 
 module.exports.getLogin = async(req, res) =>{
-  res.sendFile(path.join(__dirname + '../../../front/login.html'));
+  return res.sendFile(path.join(__dirname + '../../../front/login.html'));
 }
 
 module.exports.login = async (req, res) => {
@@ -121,8 +126,8 @@ module.exports.login = async (req, res) => {
             httpOnly: true,
           };
 
-        res.status(200).json("login success"); //토큰 보내기!
         console.log("Student Login");
+        return res.status(200).json("login success"); //토큰 보내기!
       }
     } else if (pUserInfo) {
       const pwCorrect = await bcrypt.compare(pw, pUserInfo.pw);
@@ -179,12 +184,12 @@ module.exports.login = async (req, res) => {
             httpOnly: true,
           };
 
-        res.status(200).json("login success"); //토큰 보내기!
         console.log("Professor Login");
+        return res.status(200).json("login success"); //토큰 보내기!
       }
     } else {
       console.log("There is no user!!");
-      res.sendStatus(400);
+      return res.sendStatus(400);
     }
   } catch (err) {
     console.log(err);
@@ -201,7 +206,7 @@ module.exports.logout = async (req, res) => {
       college,
       department,
     });
-    res.redirect("/login");
+    return res.redirect("/login");
   } catch (err) {
     console.log(err);
   }

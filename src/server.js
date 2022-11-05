@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const userRouter = require("./routers/userRouter");
 const { sequelize } = require("./models");
 <<<<<<< HEAD
+<<<<<<< HEAD
 const path = require("path");
 const classRouter = require("./routers/classRouter");
 
@@ -15,6 +16,11 @@ const path = require("path")
 // import sequelize from "../src/models/index.js";
 // import userRouter from "./routers/userRouter.js";
 >>>>>>> 5228191 (css, js 경로 설정 문제 해결)
+=======
+const path = require("path");
+const classRouter = require("./routers/classRouter");
+
+>>>>>>> 769b83b (token 유효성검사)
 dotenv.config();
 const app = express();
 
@@ -26,10 +32,15 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/", userRouter);
 <<<<<<< HEAD
+<<<<<<< HEAD
 app.use("/class", classRouter);
 
 app.use("/", express.static(path.join(__dirname + "../../")));
 =======
+=======
+app.use("/class", classRouter);
+
+>>>>>>> 769b83b (token 유효성검사)
 app.use("/", express.static(path.join(__dirname + "../../")))
 >>>>>>> 5228191 (css, js 경로 설정 문제 해결)
 
