@@ -9,6 +9,7 @@ const authToken = (req, res, next) =>{
         let token = header && header.split(" ")[1]
 
         jwt.verify(token, process.env.ACCESS_SECRET, (err,user)=>{
+            let errMessage = err.split(":")[1]
             if(err) {
                 res.status(404).json(err)
             }else{

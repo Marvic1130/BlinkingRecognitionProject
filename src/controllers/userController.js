@@ -9,6 +9,8 @@ module.exports.home = (req, res) => {
   return res.send("hello");
 };
 
+
+
 //이름, 아이디, 패스워드, 소속대학, 학과, 학번
 module.exports.studentJoin = async (req, res) => {
   const { id, pw, college, name, department, sNum } = req.body;
@@ -19,9 +21,7 @@ module.exports.studentJoin = async (req, res) => {
       //db 모델에 맞는 데이터 생성
       name,
       id,
-
       pw: encryption,
-
       sNum,
       college,
       department,
@@ -42,7 +42,6 @@ module.exports.professorJoin = async (req, res) => {
       name,
       id,
       pw: encryption,
-
       pNum,
       college,
       department,
