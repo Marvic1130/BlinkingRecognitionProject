@@ -41,32 +41,16 @@ module.exports = class User extends Sequelize.Model {
       }
     );
   }
-<<<<<<< HEAD
-<<<<<<< HEAD
-  static associate(db) {
-    db.Class.belongsTo(db.Student, { foreignKey: "sClassId", targetKey: "id" });
-    db.Class.belongsTo(db.Professor, {
-      foreignKey: "pClassId",
-      targetKey: "id",
-    });
-=======
-=======
->>>>>>> 9f34dc5 (#2)
-  static associate(db){
-    db.Class.belongsTo(db.Student, {foreignKey : "sClassId", targetKey: "id"});
-    db.Class.belongsTo(db.Professor, {foreignKey : "pClassId", targetKey: "id"});
 
-<<<<<<< HEAD
->>>>>>> b1aac22 (database 재설정 및 database 간의 관계설정)
-=======
-=======
   static associate(db) {
     db.Class.belongsTo(db.Student, { foreignKey: "sClassId", targetKey: "id" });
     db.Class.belongsTo(db.Professor, {
       foreignKey: "pClassId",
       targetKey: "id",
     });
->>>>>>> 0445ee5 (#토큰 유효성검사, 검색기능, class등록 api등록)
->>>>>>> 9f34dc5 (#2)
+    db.Class.hasOne(db.Evaluation, {
+      foreignKey: "CevaluationId",
+      targetKey: "id",
+    });
   }
 };

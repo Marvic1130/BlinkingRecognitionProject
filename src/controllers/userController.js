@@ -2,30 +2,19 @@ const bcrypt = require("bcrypt");
 const path = require("path");
 const Student = require("../models/Student");
 const Professor = require("../models/Professor");
-<<<<<<< HEAD
-<<<<<<< HEAD
 const jwt = require("jsonwebtoken");
-<<<<<<< HEAD
-=======
+const passport = require("passport");
 
-=======
-const jwt = require("jsonwebtoken");
->>>>>>> 769b83b (token 유효성검사)
-
-
->>>>>>> 5228191 (css, js 경로 설정 문제 해결)
-=======
-<<<<<<< HEAD
-
-
-=======
->>>>>>> d6a0e92 (#1)
->>>>>>> 606ccf9 (#1)
 module.exports.home = (req, res) => {
   return res.send("hello");
 };
 
 //이름, 아이디, 패스워드, 소속대학, 학과, 학번
+
+module.exports.getLogin = async (req, res) => {
+  return res.sendFile(path.join(__dirname + "../../../front/login.html"));
+};
+
 module.exports.studentJoin = async (req, res) => {
   const { id, pw, college, name, department, sNum } = req.body;
   const encryption = bcrypt.hashSync(pw, 5);
@@ -35,9 +24,7 @@ module.exports.studentJoin = async (req, res) => {
       //db 모델에 맞는 데이터 생성
       name,
       id,
-
       pw: encryption,
-
       sNum,
       college,
       department,
@@ -49,6 +36,11 @@ module.exports.studentJoin = async (req, res) => {
   }
 };
 //이름, 아이디, 패스워드, 소속대학, 학과,사번
+
+module.exports.getLogin = async (req, res) => {
+  return res.sendFile(path.join(__dirname + "../../../front/login.html"));
+};
+
 module.exports.professorJoin = async (req, res) => {
   const { id, pw, college, name, department, pNum } = req.body;
 
@@ -69,140 +61,45 @@ module.exports.professorJoin = async (req, res) => {
   }
 };
 
-module.exports.getLogin = async(req, res) =>{
-  return res.sendFile(path.join(__dirname + '../../../front/login.html'));
-}
-
 module.exports.login = async (req, res) => {
-  const { id, pw, name } = req.body;
   try {
-    const pUserInfo = await Professor.findOne({ where: { id } });
-    const sUserInfo = await Student.findOne({ where: { id } });
-
-    if (sUserInfo) {
-      const pwCorrect = await bcrypt.compare(pw, sUserInfo.pw);
-      console.log(pwCorrect, pw, sUserInfo.pw);
-      if (!pwCorrect) {
-        console.log("Password is wrong!");
-        res.sendStatus(400);
-      } else {
-        console.log(
-          sUserInfo.id,
-          sUserInfo.name,
-          sUserInfo.college,
-          sUserInfo.sNum
-        );
-        const accessToken = jwt.sign(
-          {
-            name: sUserInfo.name,
-            id: sUserInfo.id,
-            pw: sUserInfo.pw,
-            sNum: sUserInfo.sNum,
-            college: sUserInfo.college,
-            department: sUserInfo.department,
-          },
+    // 아까 local로 등록한 인증과정 실행
+    passport.authenticate("local", (passportError, user, info) => {
+      // 인증이 실패했거나 유저 데이터가 없다면 에러 발생
+      if (passportError || !user) {
+        res.status(400).json({ message: info });
+        return;
+      }
+      // user데이터를 통해 로그인 진행
+      req.login(user, { session: false }, (loginError) => {
+        if (loginError) {
+          res.send(loginError);
+          return;
+        }
+        // 클라이언트에게 JWT생성 후 반환
+        const token = jwt.sign(
+          { id: user.id, name: user.name, auth: user.auth },
           process.env.ACCESS_SECRET,
-          {
-            expiresIn: "10m",
-            issuer: "jungseok",
-          }
+          { expiresIn: "1m", issuer: "jungseok" }
         );
-        //refresh Token 발급
-        const refreshToken = jwt.sign(
+        const refresh = jwt.sign(
           {
-            id: sUserInfo.id,
-            pw: sUserInfo.pw,
-            sNum: sUserInfo.sNum,
-            college: sUserInfo.college,
-            department: sUserInfo.department,
+            id: user.id,
+            name: user.name,
+            auth: user.auth,
           },
           process.env.REFRESH_SECRET,
-          {
-            expiresIn: "24h",
-            issuer: "jungseok",
-          }
+          { expiresIn: "10m", issuer: "jungseok" }
         );
-        //token 전송
-        res.cookie("accessToken", accessToken),
-          {
-            secure: false,
-            httpOnly: true,
-          };
-        res.cookie("refreshToken", refreshToken),
-          {
-            secure: false,
-            httpOnly: true,
-          };
-
-        console.log("Student Login");
-        return res.status(200).json("login success"); //토큰 보내기!
-      }
-    } else if (pUserInfo) {
-      const pwCorrect = await bcrypt.compare(pw, pUserInfo.pw);
-      console.log(pwCorrect, pw, pUserInfo.pw);
-      if (!pwCorrect) {
-        console.log("Password is wrong!");
-        res.sendStatus(400);
-      } else {
-        console.log(
-          pUserInfo.name,
-          pUserInfo.id,
-          pUserInfo.pNum,
-          pUserInfo.college
-        );
-        const accessToken = jwt.sign(
-          {
-            name: pUserInfo.name,
-            id: pUserInfo.id,
-            pw: pUserInfo.pw,
-            sNum: pUserInfo.sNum,
-            college: pUserInfo.college,
-            department: pUserInfo.department,
-          },
-          process.env.ACCESS_SECRET,
-          {
-            expiresIn: "10m",
-            issuer: "jungseok",
-          }
-        );
-        //refresh Token 발급
-        const refreshToken = jwt.sign(
-          {
-            id: pUserInfo.id,
-            pw: pUserInfo.pw,
-            sNum: pUserInfo.sNum,
-            college: pUserInfo.college,
-            department: pUserInfo.department,
-          },
-          process.env.REFRESH_SECRET,
-          {
-            expiresIn: "24h",
-            issuer: "jungseok",
-          }
-        );
-        //token 전송
-        res.cookie("accessToken", accessToken),
-          {
-            secure: false,
-            httpOnly: true,
-          };
-        res.cookie("refreshToken", refreshToken),
-          {
-            secure: false,
-            httpOnly: true,
-          };
-
-        console.log("Professor Login");
-        return res.status(200).json("login success"); //토큰 보내기!
-      }
-    } else {
-      console.log("There is no user!!");
-      return res.sendStatus(400);
-    }
-  } catch (err) {
-    console.log(err);
+        res.json({ token, refresh });
+      });
+    })(req, res);
+  } catch (error) {
+    console.error(error);
+    next(error);
   }
 };
+
 module.exports.logout = async (req, res) => {
   const { id, pw, college, name, department, pNum } = req.body;
   try {

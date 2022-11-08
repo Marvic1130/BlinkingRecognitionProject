@@ -1,34 +1,31 @@
 const Sequelize = require("sequelize");
-//이름, 아이디, 패스워드, 소속대학, 학과, 사번
+//
 module.exports = class User extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        name: {
-          type: Sequelize.STRING(20),
+        q1: {
+          type: Sequelize.INTEGER(20),
           allowNull: false,
         },
-        id: {
-          type: Sequelize.STRING(20),
-          allowNull: false,
-          unique: true,
-          primaryKey: true,
-        },
-        pw: {
-          //암호화 진행
-          type: Sequelize.STRING,
+        q2: {
+          type: Sequelize.INTEGER(20),
           allowNull: false,
         },
-        pNum: {
-          type: Sequelize.INTEGER(50),
+        q3: {
+          type: Sequelize.INTEGER(20),
           allowNull: false,
         },
-        college: {
-          type: Sequelize.STRING(50),
+        q4: {
+          type: Sequelize.INTEGER(20),
           allowNull: false,
         },
-        department: {
-          type: Sequelize.STRING(50),
+        q5: {
+          type: Sequelize.INTEGER(20),
+          allowNull: false,
+        },
+        q6: {
+          type: Sequelize.STRING(255),
           allowNull: false,
         },
       },
@@ -36,8 +33,8 @@ module.exports = class User extends Sequelize.Model {
         sequelize,
         timestamps: false,
         underscored: false,
-        modelName: "Professor", // 모델 이름을 설정, 노드 프로젝트에서 사용
-        tableName: "Professor",
+        modelName: "Evaluation", // 모델 이름을 설정, 노드 프로젝트에서 사용
+        tableName: "Evaluation",
         paranoid: false,
         charset: "utf8", //한글을 입력하기 위한 설정
         collate: "utf8_general_ci", //한글을 입력하기 위한 설정
@@ -46,6 +43,9 @@ module.exports = class User extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Professor.hasMany(db.Class, { foreignKey: "pClassId", sourceKey: "id" });
+    db.Evaluation.belongsTo(db.Class, {
+      foreignKey: "CevaluationId",
+      sourceKey: "id",
+    });
   }
 };
