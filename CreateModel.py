@@ -33,7 +33,7 @@ for idex, categorie in enumerate(categories):
                 ls_x.append(img / 256)
                 ls_y.append(label)
 
-x_train, x_test, y_train, y_test = train_test_split(ls_x, ls_y, test_size=.2, random_state=1234)
+x_train, x_test, y_train, y_test = train_test_split(ls_x, ls_y, test_size=.2, random_state=0)
 
 X_train = np.array(x_train)
 Y_train = np.array(y_train)
@@ -60,12 +60,8 @@ model.add(Convolution2D(64, (3, 3), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
-# model.add(Convolution2D(64, (3, 3), activation='relu'))
-# model.add(MaxPooling2D(pool_size=(2, 2)))
-# model.add(Dropout(0.25))
-
 model.add(Flatten())
-model.add(Dense(200, activation='relu'))
+model.add(Dense(128, activation='relu'))
 model.add(Dense(2, activation='softmax'))
 
 model.summary()
@@ -97,9 +93,6 @@ for i in range(y_predicted.__len__()):
         y_pred.append([0, 1])
 
 Y_pred = np.array(y_pred)
-# score = model.evaluate(X_test, Y_test)
-# print('Test loss:', score[0])
-# print('Test accuracy:', score[1])
 print('Test accuracy:', accuracy_score(Y_test, Y_pred))
 print('Test loss:', log_loss(Y_test, y_predicted))
 print("F1-score: {:.2%}".format(f1_score(Y_test, Y_pred, average='macro')))
