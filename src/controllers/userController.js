@@ -5,16 +5,14 @@ const Professor = require("../models/Professor");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 
-module.exports.home = (req, res) => {
-  return res.send("hello");
-};
-
 //이름, 아이디, 패스워드, 소속대학, 학과, 학번
 
 module.exports.getLogin = async (req, res) => {
   return res.sendFile(path.join(__dirname + "../../../front/login.html"));
 };
-
+module.exports.home = async (req, res) => {
+  return res.sendFile(path.join(__dirname + "../../../front/class.html"));
+};
 module.exports.studentJoin = async (req, res) => {
   const { id, pw, college, name, department, sNum } = req.body;
   const encryption = bcrypt.hashSync(pw, 5);
@@ -91,7 +89,7 @@ module.exports.login = async (req, res) => {
           process.env.REFRESH_SECRET,
           { expiresIn: "10m", issuer: "jungseok" }
         );
-        res.json({ token, refresh });
+        res.redirect("/main");
       });
     })(req, res);
   } catch (error) {
