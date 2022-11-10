@@ -2,7 +2,15 @@ const bcrypt = require("bcrypt");
 const path = require("path");
 const Student = require("../models/Student");
 const Professor = require("../models/Professor");
+<<<<<<< HEAD
+<<<<<<< HEAD
 const jwt = require("jsonwebtoken");
+=======
+
+>>>>>>> 8cdedcf (css, js 경로 설정 문제 해결)
+=======
+const jwt = require("jsonwebtoken");
+>>>>>>> 9ad8d56 (login 프론트 백 연결 완료)
 
 module.exports.home = (req, res) => {
   return res.sendFile(
@@ -10,6 +18,11 @@ module.exports.home = (req, res) => {
   );
 };
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 9ad8d56 (login 프론트 백 연결 완료)
 //이름, 아이디, 패스워드, 소속대학, 학과, 학번
 module.exports.studentJoin = async (req, res) => {
   const { id, pw, college, name, department, sNum } = req.body;
@@ -20,9 +33,7 @@ module.exports.studentJoin = async (req, res) => {
       //db 모델에 맞는 데이터 생성
       name,
       id,
-
       pw: encryption,
-
       sNum,
       college,
       department,
@@ -43,7 +54,6 @@ module.exports.professorJoin = async (req, res) => {
       name,
       id,
       pw: encryption,
-
       pNum,
       college,
       department,
@@ -81,6 +91,19 @@ module.exports.getLectureEvaluation = async (req, res) => {
     path.join(__dirname + "../../../front/lectureEvaluation.html")
   );
 };
+
+module.exports.getSjoin = async(req, res) =>{
+  res.sendFile(path.join(__dirname + '../../../front/studentSignup.html'));
+}
+module.exports.getPjoin=async(req,res)=>{
+  res.sendFile(path.join(__dirname + '../../../front/professorSignup.html'));
+}
+module.exports.getjoin=async(req,res)=>{
+  res.sendFile(path.join(__dirname + '../../../front/selectSignup.html'));
+}
+module.exports.getLectureEvaluation=async(req,res)=>{
+  res.sendFile(path.join(__dirname + '../../../front/lectureEvaluation.html'));
+}
 
 module.exports.login = async (req, res) => {
   const { id, pw, name } = req.body;
@@ -137,6 +160,11 @@ module.exports.login = async (req, res) => {
             httpOnly: true,
           };
 
+<<<<<<< HEAD
+=======
+        // res.status(200).json("login success"); //토큰 보내기!
+        res.sendFile(path.join(__dirname + '../../../front/classStudent.html'));
+>>>>>>> 111f42d (프론트 - 강의평가 페이지)
         console.log("Student Login");
         console.log(req.body);
         return res.redirect("/main");
@@ -190,6 +218,11 @@ module.exports.login = async (req, res) => {
             httpOnly: true,
           };
 
+<<<<<<< HEAD
+=======
+        // res.status(200).json("login success"); //토큰 보내기!
+        res.sendFile(path.join(__dirname + '../../../front/classProfessor.html'));
+>>>>>>> 111f42d (프론트 - 강의평가 페이지)
         console.log("Professor Login");
         return res.sendFile(
           path.join(__dirname + "../../../front/classProfessor.html")
@@ -219,3 +252,4 @@ module.exports.logout = async (req, res) => {
     console.log(err);
   }
 };
+
