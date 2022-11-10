@@ -37,13 +37,23 @@ finishBtn.addEventListener("click", () => {
   }
 });
 
-// a태그 감싸기 -> 동적으로 생선되는 엘리먼트에 이벤트 달아서 실패
-// const lectureBtn = document.querySelector("#classBtn1");
-// const aTag = document.createElement("a");
+const cookies = Object.fromEntries(
+  document.cookie.split(";").map((cookie) => cookie.trim().split("="))
+);
 
-// lectureBtn.addEventListener("click", () => {
-//   aTag.innerHTML = lectureBtn.outerHTML;
-//   aTag.setAttribute("href", "/lectureEvaluation");
-//   lectureBtn.parentNode.insertBefore(aTag, lectureBtn);
-//   lectureBtn.remove();
-// });
+console.log(cookies.accessToken);
+
+fetch("http://localhost:3000", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => response.json())
+  .then((response) => {
+    if (response) {
+      console.log("hi");
+      localStorage.setItem("wtw-token", cookies.accessToken);
+    }
+  })
+  .catch((err) => console.log(err));

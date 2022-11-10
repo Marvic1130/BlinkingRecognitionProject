@@ -4,9 +4,10 @@ const Student = require("../models/Student");
 const Professor = require("../models/Professor");
 const jwt = require("jsonwebtoken");
 
-
 module.exports.home = (req, res) => {
-  return res.send("hello");
+  return res.sendFile(
+    path.join(__dirname + "../../../front/classStudent.html")
+  );
 };
 
 //이름, 아이디, 패스워드, 소속대학, 학과, 학번
@@ -53,9 +54,33 @@ module.exports.professorJoin = async (req, res) => {
   }
 };
 
-module.exports.getLogin = async(req, res) =>{
-  return res.sendFile(path.join(__dirname + '../../../front/login.html'));
-}
+module.exports.getLogin = async (req, res) => {
+  return res.sendFile(path.join(__dirname + "../../../front/login.html"));
+};
+
+module.exports.getSjoin = async (req, res) => {
+  return res.sendFile(
+    path.join(__dirname + "../../../front/studentSignup.html")
+  );
+};
+
+module.exports.getPjoin = async (req, res) => {
+  return res.sendFile(
+    path.join(__dirname + "../../../front/professorSignup.html")
+  );
+};
+
+module.exports.getJoin = async (req, res) => {
+  return res.sendFile(
+    path.join(__dirname + "../../../front/selectSignup.html")
+  );
+};
+
+module.exports.getLectureEvaluation = async (req, res) => {
+  return res.sendFile(
+    path.join(__dirname + "../../../front/lectureEvaluation.html")
+  );
+};
 
 module.exports.login = async (req, res) => {
   const { id, pw, name } = req.body;
@@ -104,7 +129,7 @@ module.exports.login = async (req, res) => {
         res.cookie("accessToken", accessToken),
           {
             secure: false,
-            httpOnly: true,
+            httpOnly: false,
           };
         res.cookie("refreshToken", refreshToken),
           {
@@ -113,7 +138,8 @@ module.exports.login = async (req, res) => {
           };
 
         console.log("Student Login");
-        return res.status(200).json("login success"); //토큰 보내기!
+        console.log(req.body);
+        return res.redirect("/main");
       }
     } else if (pUserInfo) {
       const pwCorrect = await bcrypt.compare(pw, pUserInfo.pw);
@@ -165,7 +191,9 @@ module.exports.login = async (req, res) => {
           };
 
         console.log("Professor Login");
-        return res.status(200).json("login success"); //토큰 보내기!
+        return res.sendFile(
+          path.join(__dirname + "../../../front/classProfessor.html")
+        );
       }
     } else {
       console.log("There is no user!!");
