@@ -5,15 +5,15 @@ const user = require("../controllers/userController");
 // import { home } from "../controlers/userControler.js";
 const userRouter = express.Router(); //라우터 생성
 
-
-userRouter.get("/", user.home);
+userRouter.get("/main", user.home);
 userRouter.post("/sJoin", user.studentJoin);
 userRouter.post("/pJoin", user.professorJoin);
-userRouter.get("/login" , user.getLogin);
-userRouter.post("/login", user.login);
-userRouter.get("/selectSignup" , user.getjoin);
-userRouter.get("/studentSignup",user.getSjoin);
-userRouter.get("/professorSignup",user.getPjoin);
+userRouter.get("/", user.getLogin);
+userRouter.post("/", user.login);
+userRouter.get("/selectSignup", user.getJoin);
+userRouter.get("/studentSignup", user.getSjoin);
+userRouter.get("/professorSignup", user.getPjoin);
+userRouter.get("/lectureEvaluation", user.getLectureEvaluation);
 
 // export default userRouter;
 module.exports = userRouter;
